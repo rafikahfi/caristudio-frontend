@@ -95,7 +95,7 @@ function Edit() {
         });
 
         const lama = (data.gambar || []).map((path) => ({
-          url: `http://localhost:5000/${path.replace(/^\/?/, "")}`,
+          url: `https://caristudio-backend.vercel.app/${path.replace(/^\/?/, "")}`,
           name: path,
           isLama: true,
         }));
@@ -104,7 +104,7 @@ function Edit() {
         setGambarPreview(lama);
 
         if (data.thumbnail) {
-          setThumbnailPreview(`http://localhost:5000/${data.thumbnail.replace(/^\/?/, "")}`);
+          setThumbnailPreview(`https://caristudio-backend.vercel.app/${data.thumbnail.replace(/^\/?/, "")}`);
         }
       } catch (err) {
         console.error("Gagal mengambil data studio:", err);
