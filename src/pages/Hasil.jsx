@@ -37,6 +37,7 @@ const daftarKabupaten = [
 ];
 
 function Hasil() {
+  const BASE_URL = "https://caristudio-backend.vercel.app";
   /* ───────────────────── STATE ───────────────────── */
   const [filteredStudios, setFilteredStudios] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -267,7 +268,7 @@ function Hasil() {
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
           {filteredStudios.map((studio) => {
             const img = studio.thumbnail || studio.gambar?.[0] || "/default.jpg";
-            const src = img.includes("http") ? `${img}?v=${Date.now()}` : `http://localhost:5000/${img.replace(/^\/?/, "")}?v=${Date.now()}`;
+            const src = img.includes("http") ? `${img}?v=${Date.now()}` : `${BASE_URL}/${img.replace(/^\/?/, "")}?v=${Date.now()}`;
             return <Card key={studio.id} id={studio.id} title={studio.nama} description={`Rp ${studio.harga_per_jam?.toLocaleString() || "N/A"} / Jam`} thumbnail={src} />;
           })}
         </div>
