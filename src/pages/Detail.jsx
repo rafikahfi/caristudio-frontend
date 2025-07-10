@@ -37,6 +37,7 @@ function Detail() {
   const [formVisible, setFormVisible] = useState(false);
   const location = useLocation();
   const navigationType = useNavigationType();
+  const BASE_URL = "https://caristudio-backend.vercel.app";
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
@@ -82,7 +83,7 @@ function Detail() {
   const resolveImageUrl = (img) => {
     if (!img || typeof img !== "string") return "/default.jpg";
     const cleanPath = img.startsWith("/") ? img.slice(1) : img;
-    return `http://localhost:5000/${cleanPath}`;
+    return `${BASE_URL}/${cleanPath}?v=${Date.now()}`;
   };
 
   const handleImageLoad = (e, idx) => {
