@@ -7,7 +7,7 @@ function TentangKami() {
   useEffect(() => {
     const cekBackend = async () => {
       try {
-        const res = await fetch("http://localhost:5000/ping");
+        const res = await fetch("https://caristudio-backend.vercel.app/ping");
         if (!res.ok) throw new Error("Server tidak OK");
         setServerError(false);
       } catch (err) {
