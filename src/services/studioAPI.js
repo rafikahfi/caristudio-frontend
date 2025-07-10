@@ -1,7 +1,4 @@
-// const BASE_URL = "http://localhost:5000/api/studios";
-// const BASE_URL = "https://caristudio-backend.vercel.app/api/studios";
-
-const BASE_URL = "http://202.10.45.115:5000/api/studios";
+const BASE_URL = `${process.env.REACT_APP_API_URL}/api/studios`;
 
 /**
  * Mapping dari struktur backend ke frontend
