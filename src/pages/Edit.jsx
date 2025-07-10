@@ -104,7 +104,7 @@ function Edit() {
         setGambarPreview(lama);
 
         if (data.thumbnail) {
-          setThumbnailPreview(`http://202.10.45.115:5000/api/studios/${data.thumbnail.replace(/^\/?/, "")}`);
+          setThumbnailPreview(`http://202.10.45.115:5000/${data.thumbnail.replace(/^\/?/, "")}`);
         }
       } catch (err) {
         console.error("Gagal mengambil data studio:", err);
