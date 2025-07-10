@@ -37,7 +37,7 @@ function Detail() {
   const [formVisible, setFormVisible] = useState(false);
   const location = useLocation();
   const navigationType = useNavigationType();
-  const BASE_URL = "https://caristudio-backend.vercel.app";
+  const BASE_URL = "http://202.10.45.115:5000";
   const [sliderRef] = useKeenSlider(
     {
       loop: true,

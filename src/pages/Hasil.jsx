@@ -37,7 +37,7 @@ const daftarKabupaten = [
 ];
 
 function Hasil() {
-  const BASE_URL = "https://caristudio-backend.vercel.app";
+  const BASE_URL = "http://202.10.45.115:5000";
   /* ───────────────────── STATE ───────────────────── */
   const [filteredStudios, setFilteredStudios] = useState([]);
   const [loading, setLoading] = useState(true);

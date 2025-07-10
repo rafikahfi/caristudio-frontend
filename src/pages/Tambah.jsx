@@ -178,7 +178,7 @@ function Tambah() {
 
     try {
       setLoading(true);
-      const res = await fetch("https://caristudio-backend.vercel.app/api/studios", {
+      const res = await fetch("http://202.10.45.115:5000/api/studios", {
         method: "POST",
         body: data,
       });

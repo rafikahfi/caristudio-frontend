@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "https://caristudio-backend.vercel.app"; // ✅ endpoint backend vercel
+const BASE_URL = "http://202.10.45.115:5000"; // ✅ endpoint backend vercel
 
 function Login() {
   const [email, setEmail] = useState("");

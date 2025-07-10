@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BASE_URL = "https://caristudio-backend.vercel.app";
+const BASE_URL = "http://202.10.45.115:5000";
 
 function Card({ id, title, description, thumbnail }) {
   const imageUrl = thumbnail?.startsWith("http") ? `${thumbnail}?v=${Date.now()}` : thumbnail ? `${BASE_URL}/${thumbnail.replace(/^\/?/, "")}?v=${Date.now()}` : "/default.jpg";

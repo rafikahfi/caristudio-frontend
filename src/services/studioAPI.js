@@ -1,6 +1,8 @@
 // const BASE_URL = "http://localhost:5000/api/studios";
+// const BASE_URL = "https://caristudio-backend.vercel.app/api/studios";
 
-const BASE_URL = "https://caristudio-backend.vercel.app/api/studios";
+const BASE_URL = "http://202.10.45.115:5000/api/studios";
+
 /**
  * Mapping dari struktur backend ke frontend
  * Ubah jam_operasional string menjadi objek { buka, tutup }
