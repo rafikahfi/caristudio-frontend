@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
 
+const BASE_URL = "https://caristudio-backend.vercel.app";
 function Card({ id, title, description, thumbnail }) {
-  const imageUrl = thumbnail?.startsWith("http") ? `${thumbnail}?v=${Date.now()}` : thumbnail ? `http://localhost:5000/${thumbnail.replace(/^\/?/, "")}?v=${Date.now()}` : "/default.jpg";
+  const imageUrl = thumbnail?.startsWith("http") ? `${thumbnail}?v=${Date.now()}` : thumbnail ? `${BASE_URL}/${thumbnail.replace(/^\/?/, "")}?v=${Date.now()}` : "/default.jpg";
 
   return (
     <Link to={`/detail/${id}`} className="group cursor-pointer bg-white hover:bg-merah rounded-2xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition block">

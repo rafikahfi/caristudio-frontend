@@ -15,7 +15,7 @@ function Home() {
   useEffect(() => {
     const cekBackend = async () => {
       try {
-        const res = await fetch("http://localhost:5000/ping");
+        const res = await fetch("https://caristudio-backend.vercel.app/ping");
         if (!res.ok) throw new Error("Server tidak OK");
         setServerError(false);
       } catch (err) {
@@ -32,7 +32,7 @@ function Home() {
   useEffect(() => {
     const fetchStudios = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/studios");
+        const res = await fetch("https://caristudio-backend.vercel.app/api/studios");
         const data = await res.json();
         setStudios(data.sort(() => Math.random() - 0.5)); // acak urutannya
       } catch (error) {
@@ -274,7 +274,13 @@ function Home() {
         {/* Gambar Hero */}
         <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black">
           <img
-            src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `http://localhost:5000/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
+            src={
+              studios.length > 0
+                ? studios[currentHeroIndex]?.thumbnail?.startsWith("http")
+                  ? studios[currentHeroIndex].thumbnail
+                  : `https://caristudio-backend.vercel.app/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`
+                : "/default.jpg"
+            }
             alt={studios[currentHeroIndex]?.nama || "Studio"}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             loading="lazy"
