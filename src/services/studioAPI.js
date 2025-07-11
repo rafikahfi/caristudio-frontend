@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.VITE_API_URL}/api/studios`;
+const BASE_URL = `https://caristudio.my.id/api/studios`; // HARDCODE
 
 /**
  * Mapping dari struktur backend ke frontend
