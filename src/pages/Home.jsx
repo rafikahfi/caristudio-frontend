@@ -15,7 +15,7 @@ function Home() {
   useEffect(() => {
     const cekBackend = async () => {
       try {
-        const res = await fetch("http://202.10.45.115:5000/ping");
+        const res = await fetch("https://caristudio.my.id/ping");
         if (!res.ok) throw new Error("Server tidak OK");
         setServerError(false);
       } catch (err) {
