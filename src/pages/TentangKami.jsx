@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 
 function TentangKami() {
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL; // ← dari .env
   const [serverError, setServerError] = useState(false);
   const [loadingServerCheck, setLoadingServerCheck] = useState(true);
 
   useEffect(() => {
     const cekBackend = async () => {
       try {
-        const res = await fetch("http://202.10.45.115:5000/ping");
+        const res = await fetch(`${BASE_URL}/ping`);
         if (!res.ok) throw new Error("Server tidak OK");
         setServerError(false);
       } catch (err) {
