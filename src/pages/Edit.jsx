@@ -96,17 +96,22 @@ function Edit() {
           longitude: lng.toString(),
         });
 
-        const lama = (data.gambar || []).map((path) => ({
-          url: `${BASE_URL}/${path.replace(/^\/?/, "")}`,
-          name: path,
-          isLama: true,
-        }));
-
+        // === Gambar Lama (Studio)
+        const lama = (data.gambar || []).map((path) => {
+          const fullURL = path.startsWith("http") ? path : `${BASE_URL}/${path.replace(/^\/?/, "")}`;
+          return {
+            url: fullURL,
+            name: path,
+            isLama: true,
+          };
+        });
         setGambarLama(lama);
         setGambarPreview(lama);
 
+        // === Thumbnail
         if (data.thumbnail) {
-          setThumbnailPreview(`${BASE_URL}/${data.thumbnail.replace(/^\/?/, "")}`);
+          const fullThumbURL = data.thumbnail.startsWith("http") ? data.thumbnail : `${BASE_URL}/${data.thumbnail.replace(/^\/?/, "")}`;
+          setThumbnailPreview(fullThumbURL);
         }
       } catch (err) {
         console.error("Gagal mengambil data studio:", err);
