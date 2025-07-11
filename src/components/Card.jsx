@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-const BASE_URL = "http://202.10.45.115:5000";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
 function Card({ id, title, description, thumbnail }) {
   const imageUrl = thumbnail?.startsWith("http") ? `${thumbnail}?v=${Date.now()}` : thumbnail ? `${BASE_URL}/${thumbnail.replace(/^\/?/, "")}?v=${Date.now()}` : "/default.jpg";
