@@ -289,7 +289,10 @@ function Home() {
         <div className="flex flex-col text-left sm:w-1/2">
           <h2 className="text-3xl sm:text-5xl font-bold leading-tight mb-4">Telusuri Studio Favoritmu</h2>
           <p className="text-base sm:text-lg mb-4 text-white/90">Studio-studio ini dipilih secara acak dari berbagai wilayah di Bekasi. Klik untuk melihat detailnya.</p>
-          <button onClick={() => navigate(`/detail/${studios[currentHeroIndex]?._id}`)} className="bg-white text-merah font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition cursor-pointer self-end sm:self-start">
+          <button
+            onClick={() => navigate(`/detail/${studios[currentHeroIndex]?.id}`)} // ⬅️ ini bro!
+            className="bg-white text-merah font-semibold px-5 py-2 rounded-full hover:bg-gray-100 transition cursor-pointer self-end sm:self-start"
+          >
             Lihat Studio Ini
           </button>
         </div>
