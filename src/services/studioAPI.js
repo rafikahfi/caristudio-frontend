@@ -1,4 +1,4 @@
-const BASE_URL = `https://caristudio.my.id/api/studios`; // HARDCODE
+const BASE_URL = `https://caristudio.my.id`; // HARDCODE
 
 /**
  * Mapping dari struktur backend ke frontend
