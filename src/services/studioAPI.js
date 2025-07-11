@@ -62,7 +62,7 @@ export const getAllStudios = async () => {
 export const getStudiosByQuery = async (queryParams) => {
   try {
     const queryString = new URLSearchParams(queryParams).toString();
-    const res = await fetch(`${BASE_URL}?${queryString}`);
+    const res = await fetch(`${BASE_URL}/api/studios?${queryString}`);
     if (!res.ok) throw new Error(`Gagal ambil studio dari query (${res.status})`);
 
     const data = await res.json();
@@ -80,7 +80,7 @@ export const getStudioById = async (id) => {
   if (!id) throw new Error("ID studio kosong");
 
   try {
-    const res = await fetch(`${BASE_URL}/${id}`);
+    const res = await fetch(`${BASE_URL}/api/studios/${id}`);
     if (!res.ok) throw new Error(`Gagal ambil studio (${res.status})`);
 
     const data = await res.json();
@@ -96,7 +96,7 @@ export const getStudioById = async (id) => {
  */
 export const createStudio = async (studioData) => {
   try {
-    const res = await fetch(BASE_URL, {
+    const res = await fetch(`${BASE_URL}/api/studios`, {
       method: "POST",
       body: studioData,
     });
@@ -116,7 +116,7 @@ export const createStudio = async (studioData) => {
  */
 export const updateStudio = async (id, studioData) => {
   try {
-    const res = await fetch(`${BASE_URL}/${id}`, {
+    const res = await fetch(`${BASE_URL}/api/studios/${id}`, {
       method: "PUT",
       body: studioData,
     });
@@ -136,7 +136,7 @@ export const updateStudio = async (id, studioData) => {
  */
 export const deleteStudio = async (id) => {
   try {
-    const res = await fetch(`${BASE_URL}/${id}`, {
+    const res = await fetch(`${BASE_URL}/api/studios/${id}`, {
       method: "DELETE",
     });
 
