@@ -37,7 +37,7 @@ function Detail() {
   const [formVisible, setFormVisible] = useState(false);
   const location = useLocation();
   const navigationType = useNavigationType();
-  const BASE_URL = "http://202.10.45.115:5000";
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL; // ← dari .env
   const [sliderRef] = useKeenSlider(
     {
       loop: true,
