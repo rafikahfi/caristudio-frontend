@@ -178,7 +178,8 @@ function Tambah() {
 
     try {
       setLoading(true);
-      const res = await fetch("http://202.10.45.115:5000/api/studios", {
+      const BASE_URL = import.meta.env.VITE_API_BASE_URL; // ⬅️ Tambahin ini DI DALAM handleSubmit
+      const res = await fetch(`${BASE_URL}/api/studios`, {
         method: "POST",
         body: data,
       });
