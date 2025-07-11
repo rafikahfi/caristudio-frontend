@@ -32,7 +32,7 @@ function Home() {
   useEffect(() => {
     const fetchStudios = async () => {
       try {
-        const res = await fetch("http://202.10.45.115:5000/api/studios");
+        const res = await fetch("https://caristudio.my.id/api/studios");
         const data = await res.json();
         setStudios(data.sort(() => Math.random() - 0.5)); // acak urutannya
       } catch (error) {
@@ -275,7 +275,7 @@ function Home() {
         <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black">
           <img
             src={
-              studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `http://202.10.45.115:5000/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"
+              studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `https://caristudio.my.id/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"
             }
             alt={studios[currentHeroIndex]?.nama || "Studio"}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
