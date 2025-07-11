@@ -130,7 +130,11 @@ function Tambah() {
         fileType: "image/webp",
       });
 
-      setThumbnailFile(file); // ✅ kirim hasil kompres webp, bukan file asli
+      const compressedFile = new File([previewCompressed], "thumbnail.webp", {
+        type: "image/webp",
+      });
+
+      setThumbnailFile(compressedFile);
       setThumbnailPreview(URL.createObjectURL(previewCompressed));
     } catch (err) {
       console.error("Gagal buat preview thumbnail:", err);
