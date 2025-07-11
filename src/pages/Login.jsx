@@ -1,7 +1,7 @@
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
-const BASE_URL = "http://202.10.45.115:5000"; // ✅ endpoint backend vercel
+const BASE_URL = import.meta.env.VITE_API_BASE_URL; // ← dari .env
 
 function Login() {
   const [email, setEmail] = useState("");
