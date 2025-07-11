@@ -1,9 +1,5 @@
-const BASE_URL = "https://caristudio.my.id/api/studios";
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
-/**
- * Mapping dari struktur backend ke frontend
- * Ubah jam_operasional string menjadi objek { buka, tutup }
- */
 const mapStudio = (studio) => {
   let jamOp = { buka: "-", tutup: "-" };
 
@@ -49,7 +45,7 @@ const mapStudio = (studio) => {
  */
 export const getAllStudios = async () => {
   try {
-    const res = await fetch(BASE_URL);
+    const res = await fetch(`${BASE_URL}/api/studios`);
     if (!res.ok) throw new Error(`Gagal ambil semua studio (${res.status})`);
 
     const data = await res.json();

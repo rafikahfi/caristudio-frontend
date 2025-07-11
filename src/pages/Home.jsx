@@ -11,11 +11,12 @@ function Home() {
   const [serverError, setServerError] = useState(false);
   const [loadingServerCheck, setLoadingServerCheck] = useState(true); // baru
   const [studios, setStudios] = useState([]);
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL; // ← dari .env
 
   useEffect(() => {
     const cekBackend = async () => {
       try {
-        const res = await fetch("https://caristudio.my.id/ping");
+        const res = await fetch(`${BASE_URL}/ping`);
         if (!res.ok) throw new Error("Server tidak OK");
         setServerError(false);
       } catch (err) {
@@ -32,8 +33,7 @@ function Home() {
   useEffect(() => {
     const fetchStudios = async () => {
       try {
-        const res = await fetch("https://caristudio.my.id/api/studios");
-        const data = await res.json();
+        const data = await getAllStudios();
         setStudios(data.sort(() => Math.random() - 0.5)); // acak urutannya
       } catch (error) {
         console.error("Gagal mengambil data studio:", error);
@@ -274,9 +274,7 @@ function Home() {
         {/* Gambar Hero */}
         <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black">
           <img
-            src={
-              studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `https://caristudio.my.id/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"
-            }
+            src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `${BASE_URL}/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
             alt={studios[currentHeroIndex]?.nama || "Studio"}
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             loading="lazy"
