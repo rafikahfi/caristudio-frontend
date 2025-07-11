@@ -37,7 +37,7 @@ const daftarKabupaten = [
 ];
 
 function Hasil() {
-  const BASE_URL = "http://202.10.45.115:5000";
+  const BASE_URL = import.meta.env.VITE_API_BASE_URL;
   /* ───────────────────── STATE ───────────────────── */
   const [filteredStudios, setFilteredStudios] = useState([]);
   const [loading, setLoading] = useState(true);
