@@ -88,7 +88,8 @@ function Tambah() {
     }
 
     try {
-      const previews = await Promise.all(
+      // BUAT PREVIEW SAJA dari versi compress (webp)
+      const previewUrls = await Promise.all(
         validFiles.map(async (file) => {
           const previewCompressed = await imageCompression(file, {
             maxSizeMB: 0.3,
@@ -96,16 +97,15 @@ function Tambah() {
             useWebWorker: true,
             fileType: "image/webp",
           });
-
-          return {
-            previewUrl: URL.createObjectURL(previewCompressed),
-            originalFile: file, // ⬅️ kirim ke server tetap file asli
-          };
+          return URL.createObjectURL(previewCompressed);
         })
       );
 
-      setGambarPreview((prev) => [...prev, ...previews.map((p) => ({ url: p.previewUrl }))]);
-      setOriginalFile((prev) => [...prev, ...previews.map((p) => p.originalFile)]);
+      // ✅ TAMPILIN PREVIEW (pakai versi compress)
+      setGambarPreview((prev) => [...prev, ...previewUrls.map((url) => ({ url }))]);
+
+      // ✅ UPLOAD KE BACKEND PAKAI FILE ASLI
+      setOriginalFile((prev) => [...prev, ...validFiles]);
 
       if (fileInputRef.current) fileInputRef.current.value = "";
     } catch (err) {
