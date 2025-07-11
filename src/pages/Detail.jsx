@@ -82,7 +82,8 @@ function Detail() {
 
   const resolveImageUrl = (img) => {
     if (!img || typeof img !== "string") return "/default.jpg";
-    const cleanPath = img.replace(/^\/+/, ""); // hapus semua leading slash
+    if (img.startsWith("http")) return img; // ✅ kalau sudah full URL, langsung return
+    const cleanPath = img.replace(/^\/+/, "");
     return `${BASE_URL}/${cleanPath}?v=${Date.now()}`;
   };
 
