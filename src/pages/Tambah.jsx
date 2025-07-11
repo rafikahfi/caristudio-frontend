@@ -130,7 +130,7 @@ function Tambah() {
         fileType: "image/webp",
       });
 
-      setThumbnailFile(previewCompressed); // ✅ kirim hasil kompres webp, bukan file asli
+      setThumbnailFile(file); // ✅ kirim hasil kompres webp, bukan file asli
       setThumbnailPreview(URL.createObjectURL(previewCompressed));
     } catch (err) {
       console.error("Gagal buat preview thumbnail:", err);
