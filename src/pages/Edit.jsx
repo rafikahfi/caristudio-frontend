@@ -5,6 +5,8 @@ import { getStudioById, updateStudio, deleteStudio } from "../services/studioAPI
 import { Navigate } from "react-router-dom";
 import NotAuthorized from "./NotAuthorized";
 
+const BASE_URL = import.meta.env.VITE_API_BASE_URL;
+
 const isAdmin = () => localStorage.getItem("admin") === "true"; // ✅ fungsi pengecekan admin
 
 function Edit() {
@@ -95,7 +97,7 @@ function Edit() {
         });
 
         const lama = (data.gambar || []).map((path) => ({
-          url: `http://202.10.45.115:5000/${path.replace(/^\/?/, "")}`,
+          url: `${BASE_URL}/${path.replace(/^\/?/, "")}`,
           name: path,
           isLama: true,
         }));
@@ -104,7 +106,7 @@ function Edit() {
         setGambarPreview(lama);
 
         if (data.thumbnail) {
-          setThumbnailPreview(`http://202.10.45.115:5000/${data.thumbnail.replace(/^\/?/, "")}`);
+          setThumbnailPreview(`${BASE_URL}/${data.thumbnail.replace(/^\/?/, "")}`);
         }
       } catch (err) {
         console.error("Gagal mengambil data studio:", err);
