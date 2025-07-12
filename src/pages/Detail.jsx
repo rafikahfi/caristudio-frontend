@@ -226,7 +226,8 @@ function Detail() {
                           onError={(e) => {
                             e.target.src = "/default.jpg";
                           }}
-                          className={`w-full h-full cursor-pointer transition-transform duration-300 hover:scale-105 ${isPortrait ? "object-contain" : "object-cover"}`}
+                          onLoad={(e) => handleImageLoad(e, idx)} // tetep dipake buat deteksi rasio
+                          className={`w-full h-full cursor-pointer transition-transform duration-300 hover:scale-105 ${imageRatios[idx] < 1 ? "object-contain" : "object-cover"}`}
                         />
                       </div>
                     </div>
