@@ -224,7 +224,7 @@ function Detail() {
                           onError={(e) => {
                             e.target.src = "/default.jpg";
                           }}
-                          onLoad={(e) => handleImageLoad(e, idx)}
+                          afterLoad={(e) => handleImageLoad(e, idx)} // ⬅️ ini penting
                           className={`w-full h-full cursor-pointer transition-transform duration-300 hover:scale-105 ${isPortrait ? "object-contain" : "object-cover"}`}
                         />
                       </div>
