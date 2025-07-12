@@ -279,7 +279,7 @@ function Home() {
           <LazyLoadImage
             src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `${BASE_URL}/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
             alt={studios[currentHeroIndex]?.nama || "Studio"}
-            effect="blur"
+            effect="opacity"
             placeholderSrc="/default.jpg"
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
             wrapperClassName="w-full h-full"
