@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+// Membuat Animasi Loading pada Thumbnail
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 const BASE_URL = import.meta.env.VITE_API_BASE_URL;
 
@@ -7,16 +10,8 @@ function Card({ id, title, description, thumbnail }) {
 
   return (
     <Link to={`/detail/${id}`} className="group cursor-pointer bg-white hover:bg-merah rounded-2xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition block">
-      <img
-        src={imageUrl}
-        alt={title || "Studio"}
-        className="w-full h-40 object-cover"
-        loading="lazy"
-        onError={(e) => {
-          e.target.onerror = null;
-          e.target.src = "/default.jpg";
-        }}
-      />
+      <LazyLoadImage src={imageUrl} alt={title || "Studio"} effect="blur" placeholderSrc="/default.jpg" className="w-full h-40 object-cover" />
+
       <div className="p-4">
         <h3 className="text-base font-semibold mb-1 truncate group-hover:text-white transition">{title || "Tanpa Nama"}</h3>
         <p className="text-sm text-gray-600 line-clamp-2 group-hover:text-white transition">{description || "-"}</p>
