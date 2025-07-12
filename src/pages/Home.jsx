@@ -282,7 +282,7 @@ function Home() {
             effect="blur"
             placeholderSrc="/default.jpg"
             loading="eager"
-            className="w-full h-full object-cover transition-transform duration-300 sm:hover:scale-105"
+            className="w-full h-full object-cover"
             wrapperClassName="w-full h-full"
           />
         </div>
