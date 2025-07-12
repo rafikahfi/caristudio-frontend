@@ -151,9 +151,6 @@ function Home() {
     );
   }
 
-  // Buat animasi Thumbnail di Mobile
-  const isMobile = window.innerWidth <= 768;
-
   return (
     <div className="sm:px-9 text-center pt-10">
       <h1 className="text-4xl sm:text-5xl font-bold mb-6">Mau Kemana?</h1>
@@ -282,8 +279,9 @@ function Home() {
           <LazyLoadImage
             src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `${BASE_URL}/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
             alt={studios[currentHeroIndex]?.nama || "Studio"}
-            effect={isMobile ? "opacity" : "blur"} // ⬅️ Auto adaptif bro
+            effect="blur"
             placeholderSrc="/default.jpg"
+            loading="eager" // ⬅️ ini yang bikin blur-nya langsung siap sebelum hover
             className="w-full h-full object-cover transition-transform duration-300 sm:hover:scale-105"
             wrapperClassName="w-full h-full"
           />
