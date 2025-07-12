@@ -221,13 +221,11 @@ function Detail() {
                           alt={`Studio ${idx + 1}`}
                           effect="blur"
                           placeholderSrc="/default.jpg"
-                          threshold={200}
-                          visibleByDefault={idx < 3}
                           onError={(e) => {
                             e.target.src = "/default.jpg";
                           }}
                           onLoad={(e) => handleImageLoad(e, idx)}
-                          className="w-full h-full object-contain bg-black cursor-pointer transition-transform duration-300 hover:scale-105"
+                          className={`w-full h-full cursor-pointer transition-transform duration-300 hover:scale-105 ${isPortrait ? "object-contain" : "object-cover"}`}
                         />
                       </div>
                     </div>
