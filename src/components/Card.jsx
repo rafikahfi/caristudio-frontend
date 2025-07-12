@@ -9,14 +9,15 @@ function Card({ id, title, description, thumbnail }) {
 
   return (
     <Link to={`/detail/${id}`} className="group cursor-pointer bg-white hover:bg-merah rounded-2xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition block">
-      {/* ✅ bungkus gambar tanpa rounded */}
-      <div className="w-full aspect-[4/3] overflow-hidden bg-black">
+      {/* ✅ Gambar tetap proporsional dan gak kepotong aneh */}
+      <div className="w-full h-40 overflow-hidden bg-black">
         <LazyLoadImage
           src={imageUrl}
           alt={title || "Studio"}
           effect="blur"
           placeholderSrc="/default.jpg"
-          className="w-full h-full object-cover"
+          wrapperClassName="w-full h-full"
+          className="w-full h-full object-cover object-center"
           onError={(e) => {
             e.target.onerror = null;
             e.target.src = "/default.jpg";
