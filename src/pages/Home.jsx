@@ -1,6 +1,9 @@
 import { useState, useEffect, useRef } from "react";
 import { useNavigate } from "react-router-dom";
 import { getAllStudios } from "../services/studioAPI";
+// Membuat Animasi Loading pada Thumbnail
+import { LazyLoadImage } from "react-lazy-load-image-component";
+import "react-lazy-load-image-component/src/effects/blur.css";
 
 function Home() {
   const [query, setQuery] = useState("");
@@ -273,15 +276,12 @@ function Home() {
       <div className="bg-merah rounded-3xl mx-4 mb-10 sm:mx-10 mt-15 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-white shadow-md">
         {/* Gambar Hero */}
         <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black">
-          <img
+          <LazyLoadImage
             src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `${BASE_URL}/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
             alt={studios[currentHeroIndex]?.nama || "Studio"}
+            effect="blur"
+            placeholderSrc="/default.jpg"
             className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-            loading="lazy"
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/default.jpg";
-            }}
           />
         </div>
 
