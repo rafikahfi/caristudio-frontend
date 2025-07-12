@@ -281,7 +281,7 @@ function Home() {
             alt={studios[currentHeroIndex]?.nama || "Studio"}
             effect="opacity"
             placeholderSrc="/default.jpg"
-            className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+            className="w-full h-full object-cover transition-transform duration-300 sm:hover:scale-105"
             wrapperClassName="w-full h-full"
           />
         </div>
