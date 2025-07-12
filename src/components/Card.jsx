@@ -9,8 +9,8 @@ function Card({ id, title, description, thumbnail }) {
 
   return (
     <Link to={`/detail/${id}`} className="group cursor-pointer bg-white hover:bg-merah rounded-2xl shadow-md overflow-hidden border border-gray-200 hover:shadow-lg transition block">
-      {/* ✅ wrapper biar aspect ratio konsisten */}
-      <div className="w-full aspect-[16/9] sm:aspect-[4/3] overflow-hidden bg-black rounded-2xl">
+      {/* ✅ bungkus gambar tanpa rounded */}
+      <div className="w-full aspect-[4/3] overflow-hidden bg-black">
         <LazyLoadImage
           src={imageUrl}
           alt={title || "Studio"}
@@ -24,6 +24,7 @@ function Card({ id, title, description, thumbnail }) {
         />
       </div>
 
+      {/* teks */}
       <div className="p-4">
         <h3 className="text-base font-semibold mb-1 truncate group-hover:text-white transition">{title || "Tanpa Nama"}</h3>
         <p className="text-sm text-gray-600 line-clamp-2 group-hover:text-white transition">{description || "-"}</p>
