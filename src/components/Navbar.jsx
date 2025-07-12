@@ -6,18 +6,44 @@ function Navbar() {
   const navigate = useNavigate();
   const [activeLink, setActiveLink] = useState(pathname);
   const [menuOpen, setMenuOpen] = useState(false);
+  const [showShare, setShowShare] = useState(false); // <== tambahan buat fallback modal
 
   const isAdmin = localStorage.getItem("admin") === "true";
 
   useEffect(() => {
     setActiveLink(pathname);
     setMenuOpen(false); // Tutup menu saat pindah halaman
+    setShowShare(false); // Tutup modal share juga saat navigasi
   }, [pathname]);
 
   const handleLogout = () => {
     localStorage.removeItem("admin");
     alert("Berhasil logout.");
     navigate("/secret");
+  };
+
+  const handleShare = async () => {
+    const shareData = {
+      title: "CariStudio",
+      text: "Cek studio musik keren di Bekasi!",
+      url: window.location.href,
+    };
+
+    if (navigator.share) {
+      try {
+        await navigator.share(shareData);
+      } catch (err) {
+        console.error("Share failed:", err);
+      }
+    } else {
+      setShowShare(true);
+    }
+  };
+
+  const copyLink = () => {
+    navigator.clipboard.writeText(window.location.href);
+    alert("Link berhasil disalin!");
+    setShowShare(false);
   };
 
   // Styling
@@ -65,7 +91,9 @@ function Navbar() {
               Logout
             </button>
           ) : (
-            <button className="bg-merah hover:bg-merah-200 text-white font-semibold px-4 py-2 rounded-full transition cursor-pointer">Bagikan</button>
+            <button onClick={handleShare} className="bg-merah hover:bg-merah-200 text-white font-semibold px-4 py-2 rounded-full transition cursor-pointer">
+              Bagikan
+            </button>
           )}
         </div>
 
@@ -110,10 +138,27 @@ function Navbar() {
               Logout
             </button>
           ) : (
-            <button className="bg-merah hover:bg-merah-200 text-white font-semibold px-4 py-2 rounded-full shadow-md transition">Bagikan</button>
+            <button onClick={handleShare} className="bg-merah hover:bg-merah-200 text-white font-semibold px-4 py-2 rounded-full shadow-md transition">
+              Bagikan
+            </button>
           )}
         </div>
       </div>
+
+      {/* Fallback Share Dropdown (non-mobile) */}
+      {showShare && (
+        <div className="fixed top-20 right-4 bg-white shadow-lg border rounded-xl w-52 z-50">
+          <button onClick={copyLink} className="block w-full text-left px-4 py-2 hover:bg-gray-100">
+            📋 Salin Link
+          </button>
+          <a href={`https://wa.me/?text=${encodeURIComponent(window.location.href)}`} target="_blank" rel="noopener noreferrer" className="block px-4 py-2 hover:bg-gray-100">
+            🟢 WhatsApp
+          </a>
+          <button onClick={() => setShowShare(false)} className="block w-full text-left px-4 py-2 text-red-500 hover:bg-gray-100">
+            ✖️ Tutup
+          </button>
+        </div>
+      )}
     </nav>
   );
 }
