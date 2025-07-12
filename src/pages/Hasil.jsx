@@ -281,7 +281,7 @@ function Hasil() {
       )}
       {!showAll && visibleStudios.length < filteredStudios.length && (
         <div className="flex justify-center mt-6">
-          <button onClick={() => setShowAll(true)} className="px-6 py-2 bg-merah text-white rounded-full shadow hover:bg-merah-400 transition text-sm">
+          <button onClick={() => setShowAll(true)} className="px-6 py-2 bg-merah hover:bg-merah-200 text-white rounded-full shadow transition text-sm cursor-pointer">
             Lihat Semua Studio
           </button>
         </div>
