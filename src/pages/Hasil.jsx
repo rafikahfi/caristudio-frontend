@@ -39,6 +39,9 @@ const daftarKabupaten = [
 function Hasil() {
   const BASE_URL = import.meta.env.VITE_API_BASE_URL;
   /* ───────────────────── STATE ───────────────────── */
+  const [showAll, setShowAll] = useState(false);
+  const [visibleStudios, setVisibleStudios] = useState([]);
+  const LIMIT = 6;
   const [filteredStudios, setFilteredStudios] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -87,6 +90,7 @@ function Hasil() {
           dan transisi terlihat smooth               */
         setTimeout(() => {
           setFilteredStudios(sorted);
+          setVisibleStudios(sorted.slice(0, LIMIT)); // tampil 6 dulu
           setLoading(false);
         }, 300);
       } catch (err) {
@@ -266,7 +270,7 @@ function Hasil() {
         <Loading />
       ) : filteredStudios.length ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
-          {filteredStudios.map((studio) => {
+          {(showAll ? filteredStudios : visibleStudios).map((studio) => {
             const img = studio.thumbnail || studio.gambar?.[0] || "/default.jpg";
             const src = img.includes("http") ? `${img}?v=${Date.now()}` : `${BASE_URL}/${img.replace(/^\/?/, "")}?v=${Date.now()}`;
             return <Card key={studio.id} id={studio.id} title={studio.nama} description={`Rp ${studio.harga_per_jam?.toLocaleString() || "N/A"} / Jam`} thumbnail={src} />;
@@ -274,6 +278,13 @@ function Hasil() {
         </div>
       ) : (
         <p className="text-gray-500 text-center mt-10">Tidak ada studio yang cocok dengan pencarian kamu.</p>
+      )}
+      {!showAll && visibleStudios.length < filteredStudios.length && (
+        <div className="flex justify-center mt-6">
+          <button onClick={() => setShowAll(true)} className="px-6 py-2 bg-merah text-white rounded-full shadow hover:bg-merah-400 transition text-sm">
+            Lihat Semua Studio
+          </button>
+        </div>
       )}
     </div>
   );
