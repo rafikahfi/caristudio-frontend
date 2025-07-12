@@ -275,14 +275,14 @@ function Home() {
       {/* 🟥 Hero Section Slideshow (TAMPIL DI BAWAH FORM) */}
       <div className="bg-merah rounded-3xl mx-4 mb-10 sm:mx-10 mt-15 p-6 sm:p-10 flex flex-col sm:flex-row items-center justify-between gap-6 text-white shadow-md">
         {/* Gambar Hero */}
-        <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black">
+        <div className="w-full sm:w-1/2 rounded-2xl overflow-hidden aspect-[16/9] bg-black transition-transform duration-300 sm:hover:scale-105">
           <LazyLoadImage
             src={studios.length > 0 ? (studios[currentHeroIndex]?.thumbnail?.startsWith("http") ? studios[currentHeroIndex].thumbnail : `${BASE_URL}/${studios[currentHeroIndex]?.thumbnail?.replace(/^\/?/, "")}`) : "/default.jpg"}
             alt={studios[currentHeroIndex]?.nama || "Studio"}
             effect="blur"
             placeholderSrc="/default.jpg"
-            loading="eager" // ⬅️ ini yang bikin blur-nya langsung siap sebelum hover
-            className="w-full h-full object-cover transition-transform duration-300 sm:hover:scale-105"
+            loading="eager"
+            className="w-full h-full object-cover"
             wrapperClassName="w-full h-full"
           />
         </div>
