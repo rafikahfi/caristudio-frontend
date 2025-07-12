@@ -14,9 +14,6 @@ import L from "leaflet";
 import markerIcon2x from "leaflet/dist/images/marker-icon-2x.png";
 import markerIcon from "leaflet/dist/images/marker-icon.png";
 import markerShadow from "leaflet/dist/images/marker-shadow.png";
-// Membuat Animasi Loading pada Gambar
-import { LazyLoadImage } from "react-lazy-load-image-component";
-import "react-lazy-load-image-component/src/effects/blur.css";
 
 const isAdmin = () => localStorage.getItem("admin") === "true"; // ✅ fungsi cek admin
 
@@ -216,16 +213,12 @@ function Detail() {
                   <PhotoView key={idx} src={url}>
                     <div className="keen-slider__slide">
                       <div className="rounded-xl overflow-hidden aspect-[4/3] flex items-center justify-center bg-black">
-                        <LazyLoadImage
+                        <img
                           src={url}
                           alt={`Studio ${idx + 1}`}
-                          effect="blur"
-                          placeholderSrc="/default.jpg"
-                          onError={(e) => {
-                            e.target.src = "/default.jpg";
-                          }}
-                          afterLoad={(e) => handleImageLoad(e, idx)} // ⬅️ ini penting
+                          onLoad={(e) => handleImageLoad(e, idx)}
                           className={`w-full h-full cursor-pointer transition-transform duration-300 hover:scale-105 ${isPortrait ? "object-contain" : "object-cover"}`}
+                          loading="lazy"
                         />
                       </div>
                     </div>
