@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Navigate } from "react-router-dom"; // ✅ Tambahan penting
+import NotAuthorized from "./NotAuthorized";
 import { getAllStudios } from "../services/studioAPI";
 import dummyData from "../data/dummy_studios_500.json";
 
@@ -31,11 +31,11 @@ const daftarKabupaten = [
   "Tarumajaya",
 ];
 
-function Compare() {
-  const isAdmin = () => localStorage.getItem("admin") === "true";
+const isAdmin = () => localStorage.getItem("admin") === "true";
 
+function Compare() {
   if (!isAdmin()) {
-    return <Navigate to="/notauthorized" replace />;
+    return <NotAuthorized />;
   }
 
   const [query, setQuery] = useState("");
