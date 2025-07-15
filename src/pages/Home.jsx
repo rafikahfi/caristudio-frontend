@@ -175,7 +175,7 @@ function Home() {
           ref={contentRef}
           className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
           style={{
-            minWidth: "200%",
+            minWidth: "200%", // HARUS 200% karena kontennya diulang
             animationPlayState: isPaused ? "paused" : "running",
             animationDuration: `${duration}s`,
           }}
