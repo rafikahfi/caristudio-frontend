@@ -92,15 +92,19 @@ function Home() {
   const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    if (wrapperRef.current && contentRef.current) {
-      const wrapperWidth = wrapperRef.current.offsetWidth;
-      const contentWidth = contentRef.current.scrollWidth / 2;
-      const speed = 50; // pixel per second
+    const timeout = setTimeout(() => {
+      if (wrapperRef.current && contentRef.current) {
+        const wrapperWidth = wrapperRef.current.offsetWidth;
+        const contentWidth = contentRef.current.scrollWidth / 2;
+        const speed = 50;
 
-      const totalDistance = contentWidth + wrapperWidth;
-      const calculatedDuration = totalDistance / speed;
-      setDuration(calculatedDuration);
-    }
+        const totalDistance = contentWidth + wrapperWidth;
+        const calculatedDuration = totalDistance / speed;
+        setDuration(calculatedDuration);
+      }
+    }, 100); // kasih delay biar DOM beneran ready
+
+    return () => clearTimeout(timeout);
   }, []);
 
   // animasi lama
