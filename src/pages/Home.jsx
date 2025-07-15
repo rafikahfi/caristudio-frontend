@@ -96,7 +96,7 @@ function Home() {
       if (wrapperRef.current && contentRef.current) {
         const wrapperWidth = wrapperRef.current.offsetWidth;
         const contentWidth = contentRef.current.scrollWidth / 2;
-        const speed = 50;
+        const speed = 150;
 
         const totalDistance = contentWidth + wrapperWidth;
         const calculatedDuration = totalDistance / speed;
