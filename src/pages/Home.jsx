@@ -89,26 +89,40 @@ function Home() {
 
   const wrapperRef = useRef(null);
   const contentRef = useRef(null);
+  const [duration, setDuration] = useState(0);
 
   useEffect(() => {
-    let animationFrame;
-    const scrollAmount = 0.5;
+    if (wrapperRef.current && contentRef.current) {
+      const wrapperWidth = wrapperRef.current.offsetWidth;
+      const contentWidth = contentRef.current.scrollWidth / 2;
+      const speed = 50; // pixel per second
 
-    const animate = () => {
-      if (!isPaused && wrapperRef.current && contentRef.current) {
-        const wrapper = wrapperRef.current;
-        wrapper.scrollLeft += scrollAmount;
+      const totalDistance = contentWidth + wrapperWidth;
+      const calculatedDuration = totalDistance / speed;
+      setDuration(calculatedDuration);
+    }
+  }, []);
 
-        if (wrapper.scrollLeft >= contentRef.current.scrollWidth / 2) {
-          wrapper.scrollLeft = 0;
-        }
-      }
-      animationFrame = requestAnimationFrame(animate);
-    };
+  // animasi lama
+  // useEffect(() => {
+  //   let animationFrame;
+  //   const scrollAmount = 0.5;
 
-    animationFrame = requestAnimationFrame(animate);
-    return () => cancelAnimationFrame(animationFrame);
-  }, [isPaused]);
+  //   const animate = () => {
+  //     if (!isPaused && wrapperRef.current && contentRef.current) {
+  //       const wrapper = wrapperRef.current;
+  //       wrapper.scrollLeft += scrollAmount;
+
+  //       if (wrapper.scrollLeft >= contentRef.current.scrollWidth / 2) {
+  //         wrapper.scrollLeft = 0;
+  //       }
+  //     }
+  //     animationFrame = requestAnimationFrame(animate);
+  //   };
+
+  //   animationFrame = requestAnimationFrame(animate);
+  //   return () => cancelAnimationFrame(animationFrame);
+  // }, [isPaused]);
 
   // ✅ LOGIKA BARU: kirim q + kecamatan/kabupaten sekaligus (AND)
   const handleSearchSubmit = (e) => {
@@ -157,7 +171,15 @@ function Home() {
 
       {/* 🎠 Carousel Kecamatan + Kabupaten */}
       <div ref={wrapperRef} className="overflow-hidden py-4 mx-auto" style={{ width: "100%", maxWidth: "900px" }} onMouseEnter={() => setIsPaused(true)} onMouseLeave={() => setIsPaused(false)}>
-        <div ref={contentRef} className="flex gap-3 whitespace-nowrap px-4" style={{ minWidth: "200%" }}>
+        <div
+          ref={contentRef}
+          className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
+          style={{
+            minWidth: "200%",
+            animationPlayState: isPaused ? "paused" : "running",
+            animationDuration: `${duration}s`,
+          }}
+        >
           {[...daftarKecamatan, ...daftarKabupaten, ...daftarKecamatan, ...daftarKabupaten].map((item, i) => (
             <button
               key={`${item}-${i}`}
