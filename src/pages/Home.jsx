@@ -149,6 +149,10 @@ function Home() {
     );
   }
 
+  const daftarGabungan = Array(4)
+    .fill([...daftarKecamatan, ...daftarKabupaten])
+    .flat();
+
   return (
     <div className="sm:px-9 text-center pt-10">
       <h1 className="text-4xl sm:text-5xl font-bold mb-6">Mau Kemana?</h1>
@@ -159,12 +163,12 @@ function Home() {
           ref={contentRef}
           className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
           style={{
-            minWidth: "200%", // HARUS 200% karena kontennya diulang
+            minWidth: "400%", // ✅ diganti jadi 400%
             animationPlayState: isPaused ? "paused" : "running",
             animationDuration: `${duration}s`,
           }}
         >
-          {[...daftarKecamatan, ...daftarKabupaten, ...daftarKecamatan, ...daftarKabupaten].map((item, i) => (
+          {daftarGabungan.map((item, i) => (
             <button
               key={`${item}-${i}`}
               onClick={() => {
