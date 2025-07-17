@@ -93,40 +93,20 @@ function Home() {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      if (wrapperRef.current && contentRef.current) {
-        const wrapperWidth = wrapperRef.current.offsetWidth;
-        const contentWidth = contentRef.current.scrollWidth / 2;
-        const speed = 150;
+      if (!wrapperRef.current || !contentRef.current) return;
 
-        const totalDistance = contentWidth + wrapperWidth;
-        const calculatedDuration = totalDistance / speed;
-        setDuration(calculatedDuration);
-      }
-    }, 100); // kasih delay biar DOM beneran ready
+      const containerWidth = wrapperRef.current.offsetWidth;
+      const scrollWidth = contentRef.current.scrollWidth;
+
+      const distance = scrollWidth - containerWidth;
+      const speed = 80; // px per second → lu bisa adjust jadi 60 atau 100
+
+      const newDuration = Math.max(10, distance / speed); // biar ga terlalu cepet
+      setDuration(newDuration);
+    }, 100);
 
     return () => clearTimeout(timeout);
   }, []);
-
-  // animasi lama
-  // useEffect(() => {
-  //   let animationFrame;
-  //   const scrollAmount = 0.5;
-
-  //   const animate = () => {
-  //     if (!isPaused && wrapperRef.current && contentRef.current) {
-  //       const wrapper = wrapperRef.current;
-  //       wrapper.scrollLeft += scrollAmount;
-
-  //       if (wrapper.scrollLeft >= contentRef.current.scrollWidth / 2) {
-  //         wrapper.scrollLeft = 0;
-  //       }
-  //     }
-  //     animationFrame = requestAnimationFrame(animate);
-  //   };
-
-  //   animationFrame = requestAnimationFrame(animate);
-  //   return () => cancelAnimationFrame(animationFrame);
-  // }, [isPaused]);
 
   // ✅ LOGIKA BARU: kirim q + kecamatan/kabupaten sekaligus (AND)
   const handleSearchSubmit = (e) => {
