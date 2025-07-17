@@ -99,7 +99,7 @@ function Home() {
       const scrollWidth = contentRef.current.scrollWidth;
 
       const distance = scrollWidth - containerWidth;
-      const speed = 80; // px per second → lu bisa adjust jadi 60 atau 100
+      const speed = 150; // px per second → lu bisa adjust jadi 60 atau 100
 
       const newDuration = Math.max(10, distance / speed); // biar ga terlalu cepet
       setDuration(newDuration);
