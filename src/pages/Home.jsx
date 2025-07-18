@@ -99,7 +99,7 @@ function Home() {
       const scrollWidth = contentRef.current.scrollWidth;
 
       const distance = scrollWidth - containerWidth;
-      const speed = 150; // px per second → lu bisa adjust jadi 60 atau 100
+      const speed = 100; // px per second → lu bisa adjust jadi 60 atau 100
 
       const newDuration = Math.max(10, distance / speed); // biar ga terlalu cepet
       setDuration(newDuration);
@@ -150,7 +150,7 @@ function Home() {
   }
 
   const daftarGabungan = [...daftarKecamatan, ...daftarKabupaten];
-  const daftarGabunganDuplikat = [...daftarGabungan, ...daftarGabungan]; // diulang 1x aja
+  const daftarGabunganDuplikat = [...daftarGabungan, ...daftarGabungan, ...daftarGabungan]; // diulang 1x aja
 
   return (
     <div className="sm:px-9 text-center pt-10">
@@ -165,6 +165,7 @@ function Home() {
             minWidth: "fit-content",
             animationDuration: `${duration}s`, // ✅ Pake yang udah dihitung
             animationPlayState: isPaused ? "paused" : "running",
+            willChange: "transform",
           }}
         >
           {daftarGabunganDuplikat.map((item, i) => (
