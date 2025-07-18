@@ -163,7 +163,7 @@ function Home() {
           className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
           style={{
             minWidth: "200%",
-            animationDuration: "30s", // atau 40s kalau mau lambat
+            animationDuration: `${duration}s`, // ✅ Pake yang udah dihitung
             animationPlayState: isPaused ? "paused" : "running",
           }}
         >
