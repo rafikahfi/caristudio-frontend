@@ -162,7 +162,7 @@ function Home() {
           ref={contentRef}
           className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
           style={{
-            minWidth: "200%",
+            minWidth: "fit-content",
             animationDuration: `${duration}s`, // ✅ Pake yang udah dihitung
             animationPlayState: isPaused ? "paused" : "running",
           }}
