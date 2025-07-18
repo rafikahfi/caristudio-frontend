@@ -149,9 +149,8 @@ function Home() {
     );
   }
 
-  const daftarGabungan = Array(4)
-    .fill([...daftarKecamatan, ...daftarKabupaten])
-    .flat();
+  const daftarGabungan = [...daftarKecamatan, ...daftarKabupaten];
+  const daftarGabunganDuplikat = [...daftarGabungan, ...daftarGabungan]; // diulang 1x aja
 
   return (
     <div className="sm:px-9 text-center pt-10">
@@ -163,12 +162,12 @@ function Home() {
           ref={contentRef}
           className={`flex gap-3 whitespace-nowrap px-4 animate-marquee`}
           style={{
-            minWidth: "400%", // ✅ diganti jadi 400%
+            minWidth: "200%",
+            animationDuration: "30s", // atau 40s kalau mau lambat
             animationPlayState: isPaused ? "paused" : "running",
-            animationDuration: `${duration}s`,
           }}
         >
-          {daftarGabungan.map((item, i) => (
+          {daftarGabunganDuplikat.map((item, i) => (
             <button
               key={`${item}-${i}`}
               onClick={() => {
